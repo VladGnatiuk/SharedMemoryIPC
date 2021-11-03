@@ -37,7 +37,7 @@ _source = new PipeSource<BenchmarkMessageHeader>(
 ```
 var messageHeader = new BenchmarkMessageHeader
 {
-    PayloadSize = PayloadSize
+    PayloadSize = payload.Length
 };
 _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Length));
 ```
