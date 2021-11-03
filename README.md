@@ -50,6 +50,7 @@ _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Lengt
 
 ## Benchmark test results
 
+### Message size 1KB
 ```
 .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1024 numberOfChunks=1024 messageSize=1024 numberOfMessagesToSend=1024000
 .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1024 numberOfChunks=1024 messageSize=1024 numberOfMessagesToSend=1024000
@@ -77,7 +78,7 @@ NumberOfPipes=8; 631.54 MB/sec; 646,699 msg/sec; TimePerOneMessage=0.002 ms; Num
 ==============================================================================================================================================================================================================
 ```
 
-
+### Message size 10KB
 ```
 .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1024 numberOfChunks=1024 messageSize=10240 numberOfMessagesToSend=102400
 .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1024 numberOfChunks=1024 messageSize=10240 numberOfMessagesToSend=102400
@@ -105,7 +106,7 @@ NumberOfPipes=8; 1,920.94 MB/sec; 196,704 msg/sec; TimePerOneMessage=0.005 ms; N
 ==============================================================================================================================================================================================================
 ```
 
-
+### Message size 100KB
 ```
 .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=102400 numberOfChunks=1024 messageSize=102400 numberOfMessagesToSend=10240
 .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=102400 numberOfChunks=1024 messageSize=102400 numberOfMessagesToSend=10240
@@ -133,7 +134,7 @@ NumberOfPipes=8; 12,361.63 MB/sec; 126,583 msg/sec; TimePerOneMessage=0.008 ms; 
 ==============================================================================================================================================================================================================
 ```
 
-
+### Message size 1MB
 ```
 .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1048576 numberOfChunks=1024 messageSize=1048576 numberOfMessagesToSend=10240
 .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1048576 numberOfChunks=1024 messageSize=1048576 numberOfMessagesToSend=10240
@@ -161,7 +162,7 @@ NumberOfPipes=8; 8,116.95 MB/sec; 8,117 msg/sec; TimePerOneMessage=0.123 ms; Num
 ==============================================================================================================================================================================================================
 ```
 
-
+### Message size 10MB
 ```
 .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1048576 numberOfChunks=1024 messageSize=10485760 numberOfMessagesToSend=10240
 .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1048576 numberOfChunks=1024 messageSize=10485760 numberOfMessagesToSend=10240
