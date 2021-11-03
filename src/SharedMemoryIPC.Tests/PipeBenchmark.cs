@@ -7,6 +7,7 @@ using System.Reactive;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Buffers;
 
 namespace SharedMemoryIPC.Tests
 {
@@ -112,6 +113,16 @@ namespace SharedMemoryIPC.Tests
 
         private void ProcessRequest(BenchmarkMessageHeader messageHeader, Stream stream, long offset, MemoryMappedFile memoryMappedFile)
         {
+            var buffer = ArrayPool<byte>.Shared.Rent(messageHeader.PayloadSize);
+            try
+            {
+                stream.Read(buffer, 0, messageHeader.PayloadSize);
+            }
+            finally
+            {
+                ArrayPool<byte>.Shared.Return(buffer);
+            }            
+
             if (++_processedCnt != NumberOfMessagesToSend) return;
 
             _stopwatch.Stop();

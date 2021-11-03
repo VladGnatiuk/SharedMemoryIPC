@@ -18,6 +18,8 @@ namespace SharedMemoryIPC.Tests
             await Test01Async();
             await Test02Async();
             await Test03Async();
+            await Test04Async();
+            await Test05Async();
         }
 
 
@@ -73,7 +75,7 @@ namespace SharedMemoryIPC.Tests
                 "Test 04:",
                 Sizes._1_MB,
                 1024,
-                100_000,
+                10_000,
                 Sizes._1_MB
             );
             pipeBenchmark.Run();
@@ -88,7 +90,7 @@ namespace SharedMemoryIPC.Tests
                 "Test 05:",
                 Sizes._10_MB,
                 100,
-                10_000,
+                1_000,
                 Sizes._10_MB
             );
             pipeBenchmark.Run();

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SharedMemoryIPC.Tests\SharedMemoryIPC.Tests.csproj" />
     <ProjectReference Include="..\SharedMemoryIPC\SharedMemoryIPC.csproj" />
   </ItemGroup>
 
