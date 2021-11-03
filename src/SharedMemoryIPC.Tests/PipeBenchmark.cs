@@ -65,6 +65,7 @@ namespace SharedMemoryIPC.Tests
         public int PayloadSize { get; }
         public Task OnTestComplete => _taskCompletionSource.Task;
 
+        public double TotalBytes { get; set; }
         public double BytesPerSecond { get; private set; }
         public double MessagesPerSecond { get; private set; }
         public TimeSpan TimePerOneMessage { get; private set; }
@@ -100,6 +101,9 @@ namespace SharedMemoryIPC.Tests
             sb.Append($", TimePerOneMessage={TimePerOneMessage.TotalMilliseconds:N3} ms");
             sb.Append($", NumberOfMessages={NumberOfMessagesToSend:N0}");
             sb.Append($", MessageSize={MessageSize:N0}");
+            sb.Append($", ChunkSize={ChunkSize:N0}");
+            sb.Append($", NumberOfChunks={NumberOfChunks:N0}");
+            sb.Append($", Total MB={TotalBytes / 1024 / 1024:N0}");
             sb.Append($", Elapsed={_stopwatch.Elapsed}");
             return sb.ToString();
         }
@@ -121,12 +125,13 @@ namespace SharedMemoryIPC.Tests
         {
             if (_stopwatch.Elapsed.TotalSeconds > 0)
             {
-                var totalBytes = (double)NumberOfMessagesToSend * MessageSize;
-                BytesPerSecond = totalBytes / _stopwatch.Elapsed.TotalSeconds;
+                TotalBytes = (double)NumberOfMessagesToSend * MessageSize;
+                BytesPerSecond = TotalBytes / _stopwatch.Elapsed.TotalSeconds;
                 MessagesPerSecond = NumberOfMessagesToSend / _stopwatch.Elapsed.TotalSeconds;
                 TimePerOneMessage = _stopwatch.Elapsed / NumberOfMessagesToSend;
             }
         }
+
 
         public struct BenchmarkMessageHeader : IMessageHeader
         {
