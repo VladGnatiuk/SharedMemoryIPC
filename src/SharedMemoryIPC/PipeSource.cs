@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace SharedMemoryIPC
 {
@@ -21,7 +22,7 @@ namespace SharedMemoryIPC
 
         #endregion
 
-        public void Send(ref TMessageHeader requestHeader, WriteToStreamDelegate writeToStream)
+        public void Send(TMessageHeader requestHeader, WriteToStreamDelegate writeToStream)
         {
             lock (_concurrentSendLock)
             {
@@ -84,13 +85,15 @@ namespace SharedMemoryIPC
             }
         }
 
-        private void WriteData(ref TMessageHeader requestHeader, WriteToStreamDelegate writeToStream)
+        private void WriteData(ref TMessageHeader messageHeader, WriteToStreamDelegate writeToStream)
         {
             AllFileViewStream.Seek(_nextChunkIndex * ChunkSize, SeekOrigin.Begin);
-            HeaderSerializer.Write(AllFileViewStream, ref requestHeader);
+            HeaderSerializer.Write(AllFileViewStream, ref messageHeader);
 
-            if (requestHeader.PayloadSize > 0)
+            if (messageHeader.PayloadSize > 0)
                 writeToStream(AllFileViewStream);
+
+            AllFileViewStream.Flush();
         }
 
         public override void Dispose()

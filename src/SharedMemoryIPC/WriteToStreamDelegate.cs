@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System.IO.MemoryMappedFiles;
 
 namespace SharedMemoryIPC
 {
-    public delegate void WriteToStreamDelegate(Stream stream);
+    public delegate void WriteToStreamDelegate(MemoryMappedViewStream stream);
 }

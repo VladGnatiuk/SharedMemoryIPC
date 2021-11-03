@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SharedMemoryIPC.Benchmark": {
+      "commandName": "Project",
+      "commandLineArgs": "pipesCount=1 chunkSize=1024 numberOfChunks=1024 messageSize=1024 numberOfMessagesToSend=102400"
+    }
+  }
+}

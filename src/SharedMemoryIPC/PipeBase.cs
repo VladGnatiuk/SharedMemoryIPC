@@ -5,7 +5,7 @@ using System.Threading;
 namespace SharedMemoryIPC
 {
     public abstract class PipeBase<TMessageHeader> : IDisposable
-        where TMessageHeader : struct
+        where TMessageHeader : struct, IMessageHeader
     {
         #region Ctor & fields
 

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace SharedMemoryIPC
 {
     public class StructSerializer<T>
-        where T : struct
+        where T : struct, IMessageHeader
     {
         public int StructSize { get; } = Marshal.SizeOf(typeof(T));
 

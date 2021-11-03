@@ -80,7 +80,7 @@ namespace SharedMemoryIPC
                             if (!DataReadySemaphore.WaitOne(ReceiveRequestTimeoutMs))
                                 continue;
 
-                            var numberOfChunksCaptured = 1;
+                            var numberOfChunksToFitTheMessage = 1;
                             try
                             {
                                 if (cancellationToken.IsCancellationRequested) return;
@@ -88,13 +88,11 @@ namespace SharedMemoryIPC
                                 AllFileViewStream.Seek(_nextChunkIndex * ChunkSize, SeekOrigin.Begin);
                                 var messageHeader = HeaderSerializer.Read(AllFileViewStream);
 
-                                var numberOfChunksToFitTheMessage = GetNumberOfChunksToFitTheMessage(messageHeader.PayloadSize);
+                                numberOfChunksToFitTheMessage = GetNumberOfChunksToFitTheMessage(messageHeader.PayloadSize);
+
                                 // Capture additional semaphores to cover all the message
                                 for (var i = 1; i < numberOfChunksToFitTheMessage; i++)
-                                {
                                     DataReadySemaphore.WaitOne();
-                                    numberOfChunksCaptured++;
-                                }
 
                                 if (!messageHeader.Skip)
                                 {
@@ -105,17 +103,16 @@ namespace SharedMemoryIPC
                                         MemoryMappedFile
                                     );
                                 }
-
-                                _nextChunkIndex = (_nextChunkIndex + numberOfChunksToFitTheMessage) % NumberOfChunks;
                             }
-                            catch (Exception _)
+                            catch (Exception exception)
                             {
                                 // Better to handle exceptions inside the callback. This is just a safety measure
                             }
                             finally
                             {
                                 // Release channel anyways
-                                ChannelReadySemaphore.Release(numberOfChunksCaptured);
+                                _nextChunkIndex = (_nextChunkIndex + numberOfChunksToFitTheMessage) % NumberOfChunks;
+                                ChannelReadySemaphore.Release(numberOfChunksToFitTheMessage);
                             }
                         }
                     }

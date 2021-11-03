@@ -98,7 +98,7 @@ namespace SharedMemoryIPC.Tests
                 PayloadSize = size
             };
             client.Send(
-                ref messageHeader,
+                messageHeader,
                 stream => stream.Write(GetPayload(size), 0, size)
             );
         }
@@ -121,6 +121,9 @@ namespace SharedMemoryIPC.Tests
         {
             public bool Skip { get; set; }
             public int PayloadSize { get; set; }
+
+            public int MessageId { get; set; }
+            public long Ticks { get; set; }
         }
     }
 }

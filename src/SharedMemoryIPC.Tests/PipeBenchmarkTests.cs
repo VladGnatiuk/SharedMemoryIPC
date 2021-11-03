@@ -22,6 +22,20 @@ namespace SharedMemoryIPC.Tests
             await Test05Async();
         }
 
+        [Test]
+        public async Task Test00Async()
+        {
+            await using var pipeBenchmark = new PipeBenchmark(
+                "Test 01:",
+                Sizes._1_KB,
+                10 * 1024,
+                10,
+                100
+            );
+            pipeBenchmark.Run();
+            await pipeBenchmark.OnTestComplete;
+            Console.WriteLine(pipeBenchmark.PrintReport());
+        }
 
         [Test]
         public async Task Test01Async()

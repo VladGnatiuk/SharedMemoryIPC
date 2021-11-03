@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Buffers;
+using Newtonsoft.Json;
 
 namespace SharedMemoryIPC.Tests
 {
@@ -82,9 +83,12 @@ namespace SharedMemoryIPC.Tests
                     {
                         var messageHeader = new BenchmarkMessageHeader
                         {
-                            PayloadSize = PayloadSize
+                            PayloadSize = payload.Length,
+                            MessageId = i,
+                            Ticks = DateTime.Now.Ticks,
                         };
-                        _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Length));
+                        //Console.WriteLine($"Sending: {JsonConvert.SerializeObject(messageHeader)}");
+                        _source.Send(messageHeader, stream => stream.Write(payload, 0, payload.Length));
                     }
                 },
                 CancellationToken.None,
@@ -113,6 +117,8 @@ namespace SharedMemoryIPC.Tests
 
         private void ProcessRequest(BenchmarkMessageHeader messageHeader, Stream stream, long offset, MemoryMappedFile memoryMappedFile)
         {
+            //Console.WriteLine($"On received: {JsonConvert.SerializeObject(messageHeader)}");
+
             var buffer = ArrayPool<byte>.Shared.Rent(messageHeader.PayloadSize);
             try
             {
@@ -121,7 +127,7 @@ namespace SharedMemoryIPC.Tests
             finally
             {
                 ArrayPool<byte>.Shared.Return(buffer);
-            }            
+            }
 
             if (++_processedCnt != NumberOfMessagesToSend) return;
 
@@ -148,6 +154,9 @@ namespace SharedMemoryIPC.Tests
         {
             public bool Skip { get; set; }
             public int PayloadSize { get; set; }
+
+            public int MessageId { get; set; }
+            public long Ticks { get; set; }
         }
 
         public async ValueTask DisposeAsync()
