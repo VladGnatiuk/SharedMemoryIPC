@@ -152,22 +152,22 @@ Message Size 100MB
 .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
 
 
-PS E:\repos\SharedMemoryIPC\src\SharedMemoryIPC.Benchmark\bin\x64\Release\netcoreapp3.1> .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
+> .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
 ==============================================================================================================================================================================================================
 NumberOfPipes=1; 1,431.46 MB/sec; 14 msg/sec; TimePerOneMessage=69.859 ms; NumberOfMessages=1,024; MessageSize=104,857,600; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:01:11.5351514
 ==============================================================================================================================================================================================================
 
-PS E:\repos\SharedMemoryIPC\src\SharedMemoryIPC.Benchmark\bin\x64\Release\netcoreapp3.1> .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
+> .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
 ==============================================================================================================================================================================================================
 NumberOfPipes=2; 2,604.69 MB/sec; 26 msg/sec; TimePerOneMessage=38.392 ms; NumberOfMessages=1,024; MessageSize=104,857,600; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:39.3136897
 ==============================================================================================================================================================================================================
 
-PS E:\repos\SharedMemoryIPC\src\SharedMemoryIPC.Benchmark\bin\x64\Release\netcoreapp3.1> .\SharedMemoryIPC.Benchmark.exe pipesCount=4 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
+> .\SharedMemoryIPC.Benchmark.exe pipesCount=4 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
 ==============================================================================================================================================================================================================
 NumberOfPipes=4; 4,743.17 MB/sec; 47 msg/sec; TimePerOneMessage=21.083 ms; NumberOfMessages=1,024; MessageSize=104,857,600; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:21.5889292
 ==============================================================================================================================================================================================================
 
-PS E:\repos\SharedMemoryIPC\src\SharedMemoryIPC.Benchmark\bin\x64\Release\netcoreapp3.1> .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
+> .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=1048576 numberOfChunks=1024 messageSize=104857600 numberOfMessagesToSend=1024
 ==============================================================================================================================================================================================================
 NumberOfPipes=8; 4,870.88 MB/sec; 49 msg/sec; TimePerOneMessage=20.530 ms; NumberOfMessages=1,024; MessageSize=104,857,600; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:21.0229115
 ==============================================================================================================================================================================================================
