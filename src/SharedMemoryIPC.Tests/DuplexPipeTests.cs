@@ -33,8 +33,6 @@ namespace SharedMemoryIPC.Tests
             _taskCompletionSource = new TaskCompletionSource<Unit>();
             _stopwatch = new Stopwatch();
 
-            Console.WriteLine($"{nameof(TestMessageHeader)} size={Marshal.SizeOf(typeof(TestMessageHeader))}");
-
             _componentA_IncomingMessages = new List<(TestMessageHeader, byte[])>();
             _componentB_IncomingMessages = new List<(TestMessageHeader, byte[])>();
 
@@ -137,11 +135,16 @@ namespace SharedMemoryIPC.Tests
         }
 
         [Test]
-        public async Task PerformanceTest()
+        [TestCase(100)]
+        [TestCase(1_000)]
+        [TestCase(10_000)]
+        [TestCase(100_000)]
+        [TestCase(1_000_000)]
+        public async Task PerformanceTest(int numberOfMessages)
         {
-            _numberOfMessages = 10_000;
+            _numberOfMessages = numberOfMessages;
             var payloadSize = 1000;
-            Console.WriteLine($"NumberOfMessages={_numberOfMessages:N0} each way, payloadSize={payloadSize:N0}");
+            Console.WriteLine($"numberOfMessages={numberOfMessages:N0} each way, payloadSize={payloadSize:N0}, {nameof(TestMessageHeader)} size={Marshal.SizeOf(typeof(TestMessageHeader))}");
 
             var b1 = GetPayload(payloadSize, 0);
             var b2 = GetPayload(payloadSize, payloadSize);
@@ -179,31 +182,24 @@ namespace SharedMemoryIPC.Tests
             _stopwatch.Stop();
 
             Console.WriteLine($"Elapsed={_stopwatch.Elapsed}");
-            /*
-                TestMessageHeader size=24
-                NumberOfMessages=1,000,000, payloadSize=1,000
-                Elapsed=00:00:09.6187071
-            
-                TestMessageHeader size=24
-                NumberOfMessages=100,000 each way, payloadSize=1,000
-                Elapsed=00:00:01.0104112
 
-                TestMessageHeader size=24
-                NumberOfMessages=10,000 each way, payloadSize=1,000
-                Elapsed=00:00:00.1834010
+            /*            
+                numberOfMessages=100 each way, payloadSize=1,000, TestMessageHeader size=24
+                Elapsed=00:00:00.0025210
             
-                TestMessageHeader size=24
-                NumberOfMessages=1,000 each way, payloadSize=1,000
-                Elapsed=00:00:00.0189401
-
-                TestMessageHeader size=24
-                NumberOfMessages=100 each way, payloadSize=1,000
-                Elapsed=00:00:00.0081555
+                numberOfMessages=1,000 each way, payloadSize=1,000, TestMessageHeader size=24
+                Elapsed=00:00:00.0125294
             
-                TestMessageHeader size=24
-                NumberOfMessages=10 each way, payloadSize=1,000
-                Elapsed=00:00:00.0068083
+                numberOfMessages=10,000 each way, payloadSize=1,000, TestMessageHeader size=24
+                Elapsed=00:00:00.0920630
+            
+                numberOfMessages=100,000 each way, payloadSize=1,000, TestMessageHeader size=24
+                Elapsed=00:00:00.9772385
+            
+                numberOfMessages=1,000,000 each way, payloadSize=1,000, TestMessageHeader size=24
+                Elapsed=00:00:09.0678839
 
+                ~ pair of messages is processed in 10us
             */
         }
 
