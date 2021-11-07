@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace SharedMemoryIPC
 {
@@ -20,16 +19,19 @@ namespace SharedMemoryIPC
             int numberOfChunks
         ) : base(false, memoryMappedFileName, chunkSize, numberOfChunks) { }
 
+        public PipeSource(IPipeDescriptor pipeDescriptor) 
+            : this(pipeDescriptor.PipeName, pipeDescriptor.ChunkSize, pipeDescriptor.NumberOfChunks) { }
+
         #endregion
 
-        public void Send(TMessageHeader requestHeader, WriteToStreamDelegate writeToStream)
+        public void Send(ref TMessageHeader messageHeader, WriteToStreamDelegate writeToStream)
         {
             lock (_concurrentSendLock)
             {
                 if (_isDisposed)
                     throw new ObjectDisposedException($"{GetType()} for '{MemoryMappedFileName}' has been disposed already");
 
-                SendSafe(ref requestHeader, writeToStream);
+                SendSafe(ref messageHeader, writeToStream);
             }
         }
 

@@ -88,7 +88,7 @@ namespace SharedMemoryIPC.Tests
                             Ticks = DateTime.Now.Ticks,
                         };
                         //Console.WriteLine($"Sending: {JsonConvert.SerializeObject(messageHeader)}");
-                        _source.Send(messageHeader, stream => stream.Write(payload, 0, payload.Length));
+                        _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Length));
                     }
                 },
                 CancellationToken.None,

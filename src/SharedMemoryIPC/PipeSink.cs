@@ -37,6 +37,11 @@ namespace SharedMemoryIPC
             _listener = StartListening();
         }
 
+        public PipeSink(
+            IPipeDescriptor pipeDescriptor,
+            Action<TMessageHeader, Stream, long, MemoryMappedFile> onMessageCallback
+        ) : this(pipeDescriptor.PipeName, onMessageCallback, pipeDescriptor.ChunkSize, pipeDescriptor.NumberOfChunks) { }
+
         #endregion
 
         public bool IsInErrorState { get; private set; }

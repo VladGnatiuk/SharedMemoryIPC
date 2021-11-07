@@ -51,7 +51,7 @@ namespace SharedMemoryIPC.Tests
 
             await using var sink = new PipeSink<TestMessageHeader>(
                 _testId,
-                ProcessRequest,
+                ProcessMessage,
                 _chunkSize,
                 _numberOfChunks
             );
@@ -98,14 +98,14 @@ namespace SharedMemoryIPC.Tests
                 PayloadSize = size
             };
             client.Send(
-                messageHeader,
+                ref messageHeader,
                 stream => stream.Write(GetPayload(size), 0, size)
             );
         }
 
         byte[] GetPayload(int n) => Enumerable.Range(0, n).Select(i => (byte)i).ToArray();
 
-        private void ProcessRequest(TestMessageHeader messageHeader, Stream stream, long offset, MemoryMappedFile memoryMappedFile)
+        private void ProcessMessage(TestMessageHeader messageHeader, Stream stream, long offset, MemoryMappedFile memoryMappedFile)
         {
             var bytes = new byte[messageHeader.PayloadSize];
             stream.Read(bytes, 0, messageHeader.PayloadSize);

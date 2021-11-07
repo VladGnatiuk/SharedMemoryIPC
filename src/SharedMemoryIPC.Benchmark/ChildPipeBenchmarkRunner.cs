@@ -61,7 +61,7 @@ namespace SharedMemoryIPC.Benchmark
                 //Console.WriteLine($"Sending: {JsonConvert.SerializeObject(messageHeader)}");
                 // Put changing numbers into the first and last position to verify that boundaries have been read correctly
                 (payload[0], payload[^1]) = BenchmarkMessageHeader.GenerateCheckValues(ref messageHeader);
-                _source.Send(messageHeader, stream => stream.Write(payload, 0, payload.Length));
+                _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Length));
             }
         }
 
