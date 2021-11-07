@@ -175,7 +175,7 @@ namespace SharedMemoryIPC.Tests
                         Ticks = DateTime.Now.Ticks,
                         PayloadSize = payloadSize,
                     };
-                    _componentA_DuplexPipe.Send(ref header, s => s.Write(b2, 0, payloadSize));
+                    _componentB_DuplexPipe.Send(ref header, s => s.Write(b2, 0, payloadSize));
                 }
             });
             await _taskCompletionSource.Task;
@@ -183,23 +183,23 @@ namespace SharedMemoryIPC.Tests
 
             Console.WriteLine($"Elapsed={_stopwatch.Elapsed}");
 
-            /*            
+            /*
                 numberOfMessages=100 each way, payloadSize=1,000, TestMessageHeader size=24
-                Elapsed=00:00:00.0025210
-            
+                Elapsed=00:00:00.0087314
+                            
                 numberOfMessages=1,000 each way, payloadSize=1,000, TestMessageHeader size=24
-                Elapsed=00:00:00.0125294
-            
+                Elapsed=00:00:00.0151032
+                            
                 numberOfMessages=10,000 each way, payloadSize=1,000, TestMessageHeader size=24
-                Elapsed=00:00:00.0920630
-            
+                Elapsed=00:00:00.0793194
+                            
                 numberOfMessages=100,000 each way, payloadSize=1,000, TestMessageHeader size=24
-                Elapsed=00:00:00.9772385
-            
+                Elapsed=00:00:00.7454973
+                            
                 numberOfMessages=1,000,000 each way, payloadSize=1,000, TestMessageHeader size=24
-                Elapsed=00:00:09.0678839
+                Elapsed=00:00:06.5408002
 
-                ~ pair of messages is processed in 10us
+                For messages count > 1,000 a pair of messages is processed in less than 10us
             */
         }
 
