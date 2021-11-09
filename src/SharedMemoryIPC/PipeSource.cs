@@ -95,7 +95,7 @@ namespace SharedMemoryIPC
             if (messageHeader.PayloadSize > 0)
                 writeToStream(AllFileViewStream);
 
-            AllFileViewStream.Flush();
+            // No flush needed since memory stream writes directly into memory w/o any buffer
         }
 
         public override void Dispose()
