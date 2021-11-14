@@ -24,7 +24,7 @@ namespace SharedMemoryIPC.Benchmark
             int numberOfChunks,
             int numberOfMessagesToSend,
             int messageSize,
-            Action<BenchmarkMessageHeader, Stream, long, MemoryMappedFile> processMessage
+            OnMessageDelegate<BenchmarkMessageHeader> processMessage
         )
         {
             //Console.WriteLine($"pipeId={pipeId}, chunkSize={chunkSize}, numberOfChunks={numberOfChunks}, messageSize={messageSize}, numberOfMessagesToSend={numberOfMessagesToSend}");

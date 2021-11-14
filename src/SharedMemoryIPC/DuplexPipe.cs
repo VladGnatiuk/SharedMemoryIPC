@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.IO.MemoryMappedFiles;
 using System.Threading.Tasks;
 
 namespace SharedMemoryIPC
@@ -17,7 +15,7 @@ namespace SharedMemoryIPC
 
         public DuplexPipe(IPipeDescriptor outgoingPipeDescriptor,
             IPipeDescriptor incomingPipeDescriptor,
-            Action<TMessageHeader, Stream, long, MemoryMappedFile> onMessageCallback)
+            OnMessageDelegate<TMessageHeader> onMessageCallback)
         {
             _outgoingPipeDescriptor = outgoingPipeDescriptor;
 

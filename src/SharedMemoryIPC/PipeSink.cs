@@ -13,7 +13,7 @@ namespace SharedMemoryIPC
 
         #region Ctor & fields
 
-        private readonly Action<TMessageHeader, Stream, long, MemoryMappedFile> _onMessageCallback;
+        private readonly OnMessageDelegate<TMessageHeader> _onMessageCallback;
         private readonly IAsyncDisposable _listener;
 
         private bool _isGateOpen;
@@ -28,7 +28,7 @@ namespace SharedMemoryIPC
         /// <param name="numberOfChunks"></param>
         public PipeSink(
             string memoryMappedFileName,
-            Action<TMessageHeader, Stream, long, MemoryMappedFile> onMessageCallback,
+            OnMessageDelegate<TMessageHeader> onMessageCallback,
             int chunkSize,
             int numberOfChunks
         ) : base(true, memoryMappedFileName, chunkSize, numberOfChunks)
@@ -39,7 +39,7 @@ namespace SharedMemoryIPC
 
         public PipeSink(
             IPipeDescriptor pipeDescriptor,
-            Action<TMessageHeader, Stream, long, MemoryMappedFile> onMessageCallback
+            OnMessageDelegate<TMessageHeader> onMessageCallback
         ) : this(pipeDescriptor.PipeName, onMessageCallback, pipeDescriptor.ChunkSize, pipeDescriptor.NumberOfChunks) { }
 
         #endregion
