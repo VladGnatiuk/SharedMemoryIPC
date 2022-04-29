@@ -49,6 +49,9 @@ _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Lengt
 
 
 ## Benchmark test results
+CPU: Intel i7-4930K CPU 3.40 GHz
+RAM: DDR3 1866
+OS: Windows 10 Pro x64
 
 ### Message size 1KB
 ```
