@@ -49,9 +49,9 @@ _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Lengt
 
 
 ## Benchmark test results
-CPU: Intel i7-4930K CPU 3.40 GHz <br/>
-RAM: DDR3 1866<br/>
-OS: Windows 10 Pro x64<br/>
+CPU: Intel i9-12900K 3.20 GHz<br/>
+RAM: DDR5 4800<br/>
+OS: Windows 11 Pro x64<br/>
 
 ### Message size 1KB
 ```
@@ -62,22 +62,22 @@ OS: Windows 10 Pro x64<br/>
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1024 numberOfChunks=1024 messageSize=1024 numberOfMessagesToSend=1024000
 ==============================================================================================================================================================================================================
-NumberOfPipes=1; 254.49 MB/sec; 260,600 msg/sec; TimePerOneMessage=0.004 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:03.9293863
+NumberOfPipes=1; 290.70 MB/sec; 297,674 msg/sec; TimePerOneMessage=0.003 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:03.4400037
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1024 numberOfChunks=1024 messageSize=1024 numberOfMessagesToSend=1024000
 ==============================================================================================================================================================================================================
-NumberOfPipes=2; 473.01 MB/sec; 484,364 msg/sec; TimePerOneMessage=0.002 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:02.1141123
+NumberOfPipes=2; 656.59 MB/sec; 672,343 msg/sec; TimePerOneMessage=0.002 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:01.5230314
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=4 chunkSize=1024 numberOfChunks=1024 messageSize=1024 numberOfMessagesToSend=1024000
 ==============================================================================================================================================================================================================
-NumberOfPipes=4; 674.48 MB/sec; 690,670 msg/sec; TimePerOneMessage=0.001 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:01.4826194
+NumberOfPipes=4; 924.87 MB/sec; 947,070 msg/sec; TimePerOneMessage=0.001 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:01.0812296
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=1024 numberOfChunks=1024 messageSize=1024 numberOfMessagesToSend=1024000
 ==============================================================================================================================================================================================================
-NumberOfPipes=8; 631.54 MB/sec; 646,699 msg/sec; TimePerOneMessage=0.002 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:01.5834254
+NumberOfPipes=8; 1,166.81 MB/sec; 1,194,814 msg/sec; TimePerOneMessage=0.001 ms; NumberOfMessages=1,024,000; MessageSize=1,024; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.8570371
 ==============================================================================================================================================================================================================
 ```
 
@@ -90,22 +90,22 @@ NumberOfPipes=8; 631.54 MB/sec; 646,699 msg/sec; TimePerOneMessage=0.002 ms; Num
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1024 numberOfChunks=1024 messageSize=10240 numberOfMessagesToSend=102400
 ==============================================================================================================================================================================================================
-NumberOfPipes=1; 810.26 MB/sec; 82,970 msg/sec; TimePerOneMessage=0.012 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:01.2341760
+NumberOfPipes=1; 2,017.96 MB/sec; 206,639 msg/sec; TimePerOneMessage=0.005 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.4955493
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1024 numberOfChunks=1024 messageSize=10240 numberOfMessagesToSend=102400
 ==============================================================================================================================================================================================================
-NumberOfPipes=2; 1,343.33 MB/sec; 137,557 msg/sec; TimePerOneMessage=0.007 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.7444192
+NumberOfPipes=2; 3,218.16 MB/sec; 329,540 msg/sec; TimePerOneMessage=0.003 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.3107366
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=4 chunkSize=1024 numberOfChunks=1024 messageSize=10240 numberOfMessagesToSend=102400
 ==============================================================================================================================================================================================================
-NumberOfPipes=4; 1,811.60 MB/sec; 185,508 msg/sec; TimePerOneMessage=0.005 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.5519984
+NumberOfPipes=4; 3,991.21 MB/sec; 408,700 msg/sec; TimePerOneMessage=0.002 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.2505503
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=1024 numberOfChunks=1024 messageSize=10240 numberOfMessagesToSend=102400
 ==============================================================================================================================================================================================================
-NumberOfPipes=8; 1,920.94 MB/sec; 196,704 msg/sec; TimePerOneMessage=0.005 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.5205793
+NumberOfPipes=8; 4,535.67 MB/sec; 464,453 msg/sec; TimePerOneMessage=0.002 ms; NumberOfMessages=102,400; MessageSize=10,240; ChunkSize=1,024; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.2204745
 ==============================================================================================================================================================================================================
 ```
 
@@ -118,22 +118,22 @@ NumberOfPipes=8; 1,920.94 MB/sec; 196,704 msg/sec; TimePerOneMessage=0.005 ms; N
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=102400 numberOfChunks=1024 messageSize=102400 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=1; 4,338.76 MB/sec; 44,429 msg/sec; TimePerOneMessage=0.022 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.2304807
+NumberOfPipes=1; 7,821.32 MB/sec; 80,090 msg/sec; TimePerOneMessage=0.013 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.1278557
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=102400 numberOfChunks=1024 messageSize=102400 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=2; 6,268.32 MB/sec; 64,188 msg/sec; TimePerOneMessage=0.016 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.1595324
+NumberOfPipes=2; 14,378.83 MB/sec; 147,239 msg/sec; TimePerOneMessage=0.007 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.0695467
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=4 chunkSize=102400 numberOfChunks=1024 messageSize=102400 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=4; 9,314.29 MB/sec; 95,378 msg/sec; TimePerOneMessage=0.011 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.1073619
+NumberOfPipes=4; 19,096.51 MB/sec; 195,548 msg/sec; TimePerOneMessage=0.005 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.0523656
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=102400 numberOfChunks=1024 messageSize=102400 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=8; 12,361.63 MB/sec; 126,583 msg/sec; TimePerOneMessage=0.008 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.0808955
+NumberOfPipes=8; 23,185.02 MB/sec; 237,415 msg/sec; TimePerOneMessage=0.004 ms; NumberOfMessages=10,240; MessageSize=102,400; ChunkSize=102,400; NumberOfChunks=1,024; AllData=1,000 MB; Elapsed=00:00:00.0431313
 ==============================================================================================================================================================================================================
 ```
 
@@ -146,22 +146,22 @@ NumberOfPipes=8; 12,361.63 MB/sec; 126,583 msg/sec; TimePerOneMessage=0.008 ms; 
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1048576 numberOfChunks=1024 messageSize=1048576 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=1; 5,789.42 MB/sec; 5,789 msg/sec; TimePerOneMessage=0.173 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:01.7687444
+NumberOfPipes=1; 9,957.23 MB/sec; 9,957 msg/sec; TimePerOneMessage=0.100 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:01.0283981
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1048576 numberOfChunks=1024 messageSize=1048576 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=2; 10,198.28 MB/sec; 10,198 msg/sec; TimePerOneMessage=0.098 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:01.0040911
+NumberOfPipes=2; 15,369.76 MB/sec; 15,370 msg/sec; TimePerOneMessage=0.065 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:00.6662435
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=4 chunkSize=1048576 numberOfChunks=1024 messageSize=1048576 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=4; 8,224.31 MB/sec; 8,224 msg/sec; TimePerOneMessage=0.122 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:01.2450899
+NumberOfPipes=4; 15,837.95 MB/sec; 15,838 msg/sec; TimePerOneMessage=0.063 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:00.6465484
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=1048576 numberOfChunks=1024 messageSize=1048576 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=8; 8,116.95 MB/sec; 8,117 msg/sec; TimePerOneMessage=0.123 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:01.2615579
+NumberOfPipes=8; 15,445.42 MB/sec; 15,445 msg/sec; TimePerOneMessage=0.065 ms; NumberOfMessages=10,240; MessageSize=1,048,576; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=10,240 MB; Elapsed=00:00:00.6629799
 ==============================================================================================================================================================================================================
 ```
 
@@ -174,22 +174,22 @@ NumberOfPipes=8; 8,116.95 MB/sec; 8,117 msg/sec; TimePerOneMessage=0.123 ms; Num
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=1 chunkSize=1048576 numberOfChunks=1024 messageSize=10485760 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=1; 3,564.59 MB/sec; 356 msg/sec; TimePerOneMessage=2.805 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:28.7269740
+NumberOfPipes=1; 13,161.46 MB/sec; 1,316 msg/sec; TimePerOneMessage=0.760 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:07.7802928
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=2 chunkSize=1048576 numberOfChunks=1024 messageSize=10485760 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=2; 4,947.05 MB/sec; 495 msg/sec; TimePerOneMessage=2.021 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:20.6992032
+NumberOfPipes=2; 15,869.71 MB/sec; 1,587 msg/sec; TimePerOneMessage=0.630 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:06.4525451
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=4 chunkSize=1048576 numberOfChunks=1024 messageSize=10485760 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=4; 5,557.10 MB/sec; 556 msg/sec; TimePerOneMessage=1.800 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:18.4268628
+NumberOfPipes=4; 14,771.24 MB/sec; 1,477 msg/sec; TimePerOneMessage=0.677 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:06.9323889
 ==============================================================================================================================================================================================================
 
 > .\SharedMemoryIPC.Benchmark.exe pipesCount=8 chunkSize=1048576 numberOfChunks=1024 messageSize=10485760 numberOfMessagesToSend=10240
 ==============================================================================================================================================================================================================
-NumberOfPipes=8; 5,394.98 MB/sec; 539 msg/sec; TimePerOneMessage=1.854 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:18.9806075
+NumberOfPipes=8; 13,348.95 MB/sec; 1,335 msg/sec; TimePerOneMessage=0.749 ms; NumberOfMessages=10,240; MessageSize=10,485,760; ChunkSize=1,048,576; NumberOfChunks=1,024; AllData=102,400 MB; Elapsed=00:00:07.6710139
 ==============================================================================================================================================================================================================
 ```
 
