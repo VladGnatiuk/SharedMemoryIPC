@@ -52,6 +52,8 @@ _source.Send(ref messageHeader, stream => stream.Write(payload, 0, payload.Lengt
 CPU: Intel i9-12900K 3.20 GHz<br/>
 RAM: DDR5 4800<br/>
 OS: Windows 11 Pro x64<br/>
+Max data transfer speed: 23.1 GB per second (100 KB message size)<br/>
+Max messages count: 1.1 million messages per second (1 KB message size)<br/>
 
 ### Message size 1KB
 ```
